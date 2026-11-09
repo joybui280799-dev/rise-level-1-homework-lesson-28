@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Writing Practice — House and Apartment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  --bg:#f4f1ea; --panel:#ffffff; --panel2:#faf8f3; --fg:#23201b; --dim:#6d675d;
+  --edge:#ddd6c8; --edge2:#c9c0ae; --accent:#2f5d50; --accent-soft:#e4ede9;
+  --ok:#1f6b45; --ok-soft:#e2f0e7; --no:#9c3026; --no-soft:#f8e4e1;
+  --shadow:0 1px 2px rgba(35,32,27,.06), 0 6px 18px rgba(35,32,27,.05);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#17191a; --panel:#1f2224; --panel2:#24282a; --fg:#e8e6e1; --dim:#9fa29d;
+  --edge:#33383a; --edge2:#454b4e; --accent:#7fc0ab; --accent-soft:#22332e;
+  --ok:#73c295; --ok-soft:#1d2f25; --no:#e3897e; --no-soft:#33211f;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.25);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#17191a; --panel:#1f2224; --panel2:#24282a; --fg:#e8e6e1; --dim:#9fa29d;
+  --edge:#33383a; --edge2:#454b4e; --accent:#7fc0ab; --accent-soft:#22332e;
+  --ok:#73c295; --ok-soft:#1d2f25; --no:#e3897e; --no-soft:#33211f;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.25);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--fg);
+  font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.55; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:1180px; margin:0 auto; padding-block:22px; padding-left:16px; padding-right:16px}
+h1,h2,h3,.ser{font-family:Bitter,Georgia,"Times New Roman",serif}
+h1{font-size:1.6rem; margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance}
+.brand{font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); font-weight:600; margin:0 0 6px}
+.lede{color:var(--dim); margin:0 0 22px; max-width:62ch}
+
+/* ---------- màn hình chọn bài ---------- */
+.namebox{background:var(--panel); border:1px solid var(--edge); border-radius:12px; padding:14px 16px; margin-bottom:18px; box-shadow:var(--shadow)}
+.namebox label{display:block; font-size:.8rem; font-weight:600; color:var(--dim); margin-bottom:6px}
+input[type=text]{
+  width:100%; max-width:360px; padding:9px 12px; font:inherit; color:var(--fg);
+  background:var(--panel2); border:1px solid var(--edge2); border-radius:8px;
+}
+input[type=text]:focus{outline:2px solid var(--accent); outline-offset:1px}
+.menu{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{
+  background:var(--panel); border:1px solid var(--edge); border-radius:14px; padding:18px;
+  text-align:left; font:inherit; color:var(--fg); cursor:pointer; box-shadow:var(--shadow);
+  transition:transform .12s ease, border-color .12s ease; min-width:0;
+}
+.card:hover{transform:translateY(-2px); border-color:var(--accent)}
+.card .no{font-family:Bitter,serif; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600}
+.card h3{margin:6px 0 6px; font-size:1.12rem}
+.card p{margin:0; color:var(--dim); font-size:.9rem}
+.card .meta{margin-top:12px; font-size:.78rem; color:var(--dim); border-top:1px dashed var(--edge2); padding-top:9px}
+
+/* ---------- thanh trên khi làm bài ---------- */
+.bar{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px}
+.bar .t{font-family:Bitter,serif; font-weight:600; font-size:1.05rem; margin-right:auto; min-width:0}
+.pill{font-size:.8rem; font-weight:600; padding:4px 11px; border-radius:999px; background:var(--accent-soft); color:var(--accent); white-space:nowrap}
+.track{height:5px; background:var(--edge); border-radius:999px; overflow:hidden; margin-bottom:18px}
+.track i{display:block; height:100%; background:var(--accent); width:0; transition:width .25s ease}
+
+/* ---------- MÀN HÌNH CHIA ĐÔI ---------- */
+.split{display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start}
+@media (max-width:820px){ .split{grid-template-columns:1fr} }
+.pane{
+  background:var(--panel); border:1px solid var(--edge); border-radius:14px;
+  padding:18px; box-shadow:var(--shadow); min-width:0;
+}
+.pane .tag{font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); font-weight:600; margin:0 0 10px}
+.qnum{font-family:Bitter,serif; font-size:.85rem; color:var(--accent); font-weight:600; margin:0 0 8px}
+.src{font-size:1.14rem; line-height:1.5; margin:0}
+.src.jumble{font-family:Bitter,serif; font-weight:500}
+.lead{margin:16px 0 0; padding-top:14px; border-top:1px dashed var(--edge2); font-size:1.08rem; font-weight:500}
+.hintline{margin:14px 0 0; font-size:.86rem; color:var(--dim)}
+
+/* đoạn văn bài 3 */
+.psg{margin:0; font-size:1.03rem; line-height:1.85}
+.psg .gapmark{
+  display:inline-block; min-width:4.2em; text-align:center; padding:1px 8px; margin:0 2px;
+  border-bottom:2px solid var(--edge2); font-weight:600; color:var(--dim); border-radius:3px;
+}
+.psg .gapmark.now{background:var(--accent-soft); color:var(--accent); border-bottom-color:var(--accent)}
+.psg .gapmark.done{background:transparent; border-bottom:none; color:var(--fg); font-weight:400; min-width:0; padding:0}
+.psg .gapmark.done.wrong{color:var(--no); text-decoration:underline wavy var(--no)}
+
+/* ---------- phương án ---------- */
+.opts{display:grid; gap:10px}
+.opt{
+  display:flex; gap:11px; align-items:flex-start; width:100%; text-align:left;
+  background:var(--panel2); border:1.5px solid var(--edge2); border-radius:11px;
+  padding:12px 14px; font:inherit; color:var(--fg); cursor:pointer; min-width:0;
+  transition:border-color .12s ease, background .12s ease;
+}
+.opt:hover:not(:disabled){border-color:var(--accent); background:var(--accent-soft)}
+.opt:disabled{cursor:default}
+.opt .k{
+  flex:0 0 auto; width:25px; height:25px; border-radius:50%; display:grid; place-items:center;
+  background:var(--panel); border:1.5px solid var(--edge2); font-weight:700; font-size:.82rem;
+  font-family:Bitter,serif;
+}
+.opt .v{min-width:0; flex:1}
+.opt.good{border-color:var(--ok); background:var(--ok-soft)}
+.opt.good .k{border-color:var(--ok); background:var(--ok); color:#fff}
+.opt.bad{border-color:var(--no); background:var(--no-soft)}
+.opt.bad .k{border-color:var(--no); background:var(--no); color:#fff}
+
+.fb{margin-top:14px; padding:13px 15px; border-radius:11px; font-size:.93rem; border:1px solid}
+.fb.y{background:var(--ok-soft); border-color:var(--ok); color:var(--fg)}
+.fb.n{background:var(--no-soft); border-color:var(--no); color:var(--fg)}
+.fb .h{font-weight:700; display:block; margin-bottom:3px}
+.fb b{color:var(--accent)}
+
+.row{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap}
+button.go{
+  font:inherit; font-weight:600; padding:10px 20px; border-radius:10px; cursor:pointer;
+  background:var(--accent); color:var(--bg); border:1.5px solid var(--accent);
+}
+:root[data-theme="dark"] button.go, :root:not([data-theme="light"]) button.go{color:#12201c}
+@media (prefers-color-scheme:light){ :root:not([data-theme="dark"]) button.go{color:#fff} }
+button.ghost{
+  font:inherit; font-weight:600; padding:10px 18px; border-radius:10px; cursor:pointer;
+  background:transparent; color:var(--fg); border:1.5px solid var(--edge2);
+}
+button.ghost:hover{border-color:var(--accent); color:var(--accent)}
+
+/* ---------- kết quả ---------- */
+.score{font-family:Bitter,serif; font-size:3.2rem; font-weight:700; line-height:1; color:var(--accent); margin:0}
+.scsub{color:var(--dim); margin:6px 0 0}
+.rev{margin-top:20px; display:grid; gap:12px}
+.rv{background:var(--panel2); border:1px solid var(--edge); border-left:3px solid var(--no); border-radius:10px; padding:13px 15px; font-size:.92rem}
+.rv .n{font-family:Bitter,serif; font-weight:600; color:var(--dim); font-size:.8rem}
+.rv .mine{color:var(--no)} .rv .right{color:var(--ok); font-weight:600}
+.foot{margin-top:26px; padding-top:14px; border-top:1px solid var(--edge); color:var(--dim); font-size:.8rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= MENU ================= -->
+<section id="menu">
+  <p class="brand">VUIVUI English Class</p>
+  <h1>Writing Practice — House and Apartment Living</h1>
+  <p class="lede">Ba bài luyện viết trắc nghiệm, mỗi bài 10 câu. Màn hình chia đôi: bên trái là đề bài, bên phải là các phương án.</p>
+
+  <div class="namebox">
+    <label for="nm">Tên của em (để chụp màn hình gửi cô)</label>
+    <input type="text" id="nm" placeholder="Ví dụ: Nguyễn Minh Anh" autocomplete="off">
+  </div>
+
+  <div class="menu">
+    <button class="card" data-go="0">
+      <span class="no">Bài 1</span>
+      <h3>Viết lại câu</h3>
+      <p>Đọc câu gốc, chọn câu viết lại đúng nghĩa và đúng ngữ pháp.</p>
+      <div class="meta">10 câu · 3 phương án</div>
+    </button>
+    <button class="card" data-go="1">
+      <span class="no">Bài 2</span>
+      <h3>Sắp xếp câu</h3>
+      <p>Các từ đã bị xáo trộn. Chọn câu được sắp xếp đúng trật tự.</p>
+      <div class="meta">10 câu · 3 phương án</div>
+    </button>
+    <button class="card" data-go="2">
+      <span class="no">Bài 3</span>
+      <h3>Hoàn thành đoạn văn</h3>
+      <p>Chọn câu phù hợp để điền vào chỗ trống trong hai đoạn văn.</p>
+      <div class="meta">10 câu · 3 phương án</div>
+    </button>
+  </div>
+  <p class="foot">Từ vựng lấy từ Vocabulary Bank — House and Apartment Living.</p>
+</section>
+
+<!-- ================= LÀM BÀI ================= -->
+<section id="quiz" hidden>
+  <div class="bar">
+    <span class="t" id="qt"></span>
+    <span class="pill" id="qp"></span>
+    <span class="pill" id="qs"></span>
+  </div>
+  <div class="track"><i id="qbar"></i></div>
+
+  <div class="split">
+    <div class="pane" id="left"></div>
+    <div class="pane">
+      <p class="tag">Chọn một phương án</p>
+      <div class="opts" id="opts"></div>
+      <div id="fb"></div>
+      <div class="row"><button class="go" id="next" hidden>Câu tiếp theo</button>
+        <button class="ghost" id="quit">Thoát</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KẾT QUẢ ================= -->
+<section id="done" hidden>
+  <p class="brand" id="dnm"></p>
+  <h1 id="dt"></h1>
+  <div class="pane" style="margin-top:14px">
+    <p class="score" id="dsc"></p>
+    <p class="scsub" id="dmsg"></p>
+  </div>
+  <div class="rev" id="drev"></div>
+  <div class="row">
+    <button class="go" id="again">Làm lại bài này</button>
+    <button class="ghost" id="home">Về trang đầu</button>
+  </div>
+</section>
+
+</div>
+
+<script>
+/* ===================== DỮ LIỆU ===================== */
+const REWRITE=[
+{q:'This house belongs to my uncle.',lead:'My uncle ______',o:['owns this house.','own this house.','is owning this house.'],a:0,why:'<b>belong to</b> đổi sang <b>own</b>. Chủ ngữ <i>My uncle</i> số ít nên động từ thêm -s; <i>own</i> không dùng ở thì tiếp diễn.'},
+{q:'There isn’t any furniture in the flat.',lead:'The flat ______',o:['has no furniture.','has no furnitures.','hasn’t any furnitures.'],a:0,why:'<b>furniture</b> không đếm được: không bao giờ thêm <i>-s</i>.'},
+{q:'The picture is above the sofa.',lead:'The sofa ______',o:['is below the picture.','is on the picture.','is above the picture.'],a:0,why:'Đảo vị trí thì <b>above</b> thành <b>below</b>. <i>on</i> nghĩa là có chạm bề mặt nên sai.'},
+{q:'My room is not tidy at all.',lead:'My room ______',o:['is very messy.','is very spacious.','is very bright.'],a:0,why:'<b>not tidy</b> = <b>messy</b> (bừa bộn). <i>spacious</i> là rộng rãi, <i>bright</i> là sáng sủa.'},
+{q:'We moved into this house two years ago.',lead:'We ______',o:['have lived in this house for two years.','have lived in this house since two years.','are living in this house for two years.'],a:0,why:'Hiện tại hoàn thành + <b>for</b> + khoảng thời gian. <i>since</i> đi với mốc thời gian (<i>since 2024</i>).'},
+{q:'Don’t forget to water the plants.',lead:'Please ______',o:['remind me to water the plants.','remind me watering the plants.','remind to me water the plants.'],a:0,why:'Công thức <b>remind somebody TO DO something</b>.'},
+{q:'The rent is only two million dong a month.',lead:'The flat ______',o:['is very cheap.','is very expensive.','is in bad condition.'],a:0,why:'Tiền thuê thấp nghĩa là nhà <b>cheap</b> (rẻ), không phải <i>expensive</i>.'},
+{q:'She put her coat on the hook yesterday.',lead:'She ______ yesterday.',o:['hung her coat on the hook','hanged her coat on the hook','hang her coat on the hook'],a:0,why:'<b>hang – hung – hung</b> khi nói về treo đồ. <i>hanged</i> chỉ dùng với nghĩa treo cổ.'},
+{q:'The kitchen is across from the bathroom.',lead:'The bathroom ______',o:['is opposite the kitchen.','is next to the kitchen.','is behind the kitchen.'],a:0,why:'<b>across from</b> = <b>opposite</b> (đối diện). Sau <i>opposite</i> không có <i>from</i>.'},
+{q:'We threw away the old sofa last month.',lead:'We ______ last month.',o:['got rid of the old sofa','picked up the old sofa','put away the old sofa'],a:0,why:'<b>get rid of</b> = vứt bỏ. <i>pick up</i> là mua được (thường rẻ), <i>put away</i> là cất vào chỗ.'}];
+
+const ORDER=[
+{q:'the wall  /  the bookcase  /  against  /  stands',o:['The bookcase stands against the wall.','The bookcase against the wall stands.','Against the wall stand the bookcase.'],a:0,why:'Trật tự cơ bản: <b>chủ ngữ → động từ → cụm chỉ nơi chốn</b>.'},
+{q:'in  /  my socks  /  the top drawer  /  are',o:['My socks are in the top drawer.','My socks in the top drawer are.','My socks are in the drawer top.'],a:0,why:'Tính từ <b>top</b> đứng trước danh từ: <i>the top drawer</i>, không phải <i>the drawer top</i>.'},
+{q:'the armchair  /  is  /  the end table  /  the sofa and  /  between',o:['The end table is between the sofa and the armchair.','The end table is among the sofa and the armchair.','Between the sofa and the armchair the end table is.'],a:0,why:'<b>between</b> dùng khi có đúng hai vật; <i>among</i> dùng từ ba vật trở lên.'},
+{q:'the batteries  /  does  /  where  /  she  /  keep  /  ?',o:['Where does she keep the batteries?','Where she does keep the batteries?','Where does she keeps the batteries?'],a:0,why:'Câu hỏi đã có <i>does</i> thì động từ chính giữ nguyên thể: <b>does she keep</b>.'},
+{q:'your clothes  /  please  /  away  /  put',o:['Please put away your clothes.','Please put your away clothes.','Please away put your clothes.'],a:0,why:'<b>put away</b> là cụm động từ; tân ngữ đứng sau cả cụm, hoặc chen vào giữa (<i>put your clothes away</i>).'},
+{q:'a plant stand  /  in  /  there is  /  the corner',o:['There is a plant stand in the corner.','There is in the corner a plant stand.','A plant stand there is in the corner.'],a:0,why:'Cấu trúc <b>There is + danh từ + nơi chốn</b>.'},
+{q:'three storeys  /  they live  /  a house  /  with  /  in',o:['They live in a house with three storeys.','They live in a with three storeys house.','They in a house with three storeys live.'],a:0,why:'Cụm <b>with + danh từ</b> bổ nghĩa thì đứng SAU danh từ chính (<i>a house with three storeys</i>).'},
+{q:'very spacious  /  the living room  /  not  /  is',o:['The living room is not very spacious.','The living room not is very spacious.','The living room is very not spacious.'],a:0,why:'Phủ định của động từ <i>to be</i>: <b>is + not</b>, rồi mới đến <i>very + tính từ</i>.'},
+{q:'my brother  /  this belt  /  to  /  belongs',o:['This belt belongs to my brother.','This belt is belonging to my brother.','This belt belong to my brother.'],a:0,why:'<b>belong to</b> không dùng thì tiếp diễn; chủ ngữ số ít nên là <i>belongs</i>.'},
+{q:'the kitchen  /  we have  /  in  /  breakfast',o:['We have breakfast in the kitchen.','We have in the kitchen breakfast.','In the kitchen we breakfast have.'],a:0,why:'Tân ngữ (<i>breakfast</i>) đứng ngay sau động từ, cụm nơi chốn để cuối câu.'}];
+
+const PASSAGES=[
+{title:'Our new house',parts:['Last month my family moved into a new house near the market. ',1,' On the ground floor there is a living room, a kitchen and a small dining room. ',2,' My bedroom is on the second floor, at the end of the corridor. ',3,' There is a small yard in front of the house. ',4,' The street is a bit noisy at night, ',5,'']},
+{title:'Looking for a flat',parts:['Last summer my sister decided to move out of our family home. ',6,' She looked on the internet for two weeks and finally found a small place near her office. ',7,' The flat was on the fifth floor. ',8,' There was no furniture at all, ',9,' Now she is very happy. ',10,'']}];
+
+const COMPLETE=[
+{o:['It is a three-storey house with a small garden.','It is a tiny studio with only one room.','We sold it to our neighbour last week.'],a:0,why:'Câu sau nhắc tới <i>the ground floor</i> và nhiều phòng, nên ngôi nhà phải có nhiều tầng.'},
+{o:['We eat together at the dinner table every evening.','We keep our motorbike in the bedroom.','There is no kitchen in the house.'],a:0,why:'Câu trước vừa nhắc <i>a small dining room</i>, nên câu nối tiếp phải nói về bữa ăn.'},
+{o:['It is not very big, but it is bright because the window faces the garden.','It is dark because there are no windows at all.','It is the living room where we watch TV.'],a:0,why:'Câu trước nói <i>My bedroom</i>, nên <i>It</i> phải tả phòng ngủ — không thể là phòng khách.'},
+{o:['My mother grows flowers there.','My father parks his motorbike in the bathroom.','We never go outside the house.'],a:0,why:'<i>there</i> thay cho <i>the yard</i> vừa nhắc ở câu trước.'},
+{o:['but we are very happy here.','so the house is very quiet.','because the house has three storeys.'],a:0,why:'<b>but</b> nối hai ý trái ngược: ồn ào nhưng vẫn thấy vui.'},
+{o:['She wanted to rent a flat of her own.','She wanted to live with our grandparents.','She wanted to buy a mansion by the sea.'],a:0,why:'Đã <i>move out</i> thì bước tiếp theo hợp lý là đi thuê nhà riêng.'},
+{o:['She went to check it out on a Saturday morning.','She moved in without seeing it.','She decided not to look at any flats.'],a:0,why:'Tìm được nhà rồi thì phải đi xem thử — <b>check out</b> = đi xem tận nơi.'},
+{o:['The rent was only three million dong a month, so it was quite cheap.','The rent was far too expensive for her.','It had no windows and was in bad condition.'],a:0,why:'Các câu sau cho thấy cô ấy vẫn thuê căn này, nên thông tin phải là điểm tốt.'},
+{o:['so she had to buy everything herself.','so the rooms looked very crowded.','because the landlord filled it with furniture.'],a:0,why:'Không có đồ đạc thì hệ quả là phải tự mua — dùng <b>so</b> để chỉ kết quả.'},
+{o:['“My flat is tiny, but it belongs to me,” she says.','“I want to move back home,” she says.','“There is too much furniture here,” she says.'],a:0,why:'Câu trước nói <i>she is very happy</i>, nên lời thoại phải mang nghĩa hài lòng.'}];
+
+/* ===================== LÔ-GÍC ===================== */
+const TASKS=[
+ {name:'Bài 1 — Viết lại câu', tag:'Câu gốc', data:REWRITE, kind:'rewrite'},
+ {name:'Bài 2 — Sắp xếp câu',  tag:'Các từ bị xáo trộn', data:ORDER, kind:'order'},
+ {name:'Bài 3 — Hoàn thành đoạn văn', tag:'Đoạn văn', data:COMPLETE, kind:'passage'},
+];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+let T=0, i=0, score=0, items=[], log=[], locked=false, name='';
+
+try{ const n=localStorage.getItem('vv_house_name'); if(n) $('nm').value=n; }catch(e){}
+
+function shuffle(a){ const x=a.slice(); for(let i=x.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [x[i],x[j]]=[x[j],x[i]]; } return x; }
+
+function build(t){
+  return TASKS[t].data.map((it,ix)=>{
+    const right=it.o[it.a];
+    const shown=shuffle(it.o);
+    return {...it, ix, shown, ai:shown.indexOf(right), right};
+  });
+}
+
+function start(t){
+  T=t; i=0; score=0; log=[]; locked=false;
+  name=$('nm').value.trim();
+  try{ localStorage.setItem('vv_house_name', name); }catch(e){}
+  items=build(t);
+  $('menu').hidden=true; $('done').hidden=true; $('quiz').hidden=false;
+  $('qt').textContent=TASKS[t].name;
+  render();
+  window.scrollTo(0,0);
+}
+
+function render(){
+  const it=items[i], k=TASKS[T].kind;
+  locked=false;
+  $('qp').textContent='Câu '+(i+1)+' / '+items.length;
+  $('qs').textContent='Đúng: '+score;
+  $('qbar').style.width=(i/items.length*100)+'%';
+
+  /* ----- cột trái ----- */
+  let L='<p class="tag">'+TASKS[T].tag+'</p><p class="qnum">Câu '+(i+1)+'</p>';
+  if(k==='rewrite'){
+    L+='<p class="src">'+esc(it.q)+'</p><p class="lead">'+esc(it.lead)+'</p>'
+      +'<p class="hintline">Chọn phần tiếp theo sao cho câu mới giữ nguyên nghĩa câu gốc.</p>';
+  }else if(k==='order'){
+    L+='<p class="src jumble">'+esc(it.q)+'</p>'
+      +'<p class="hintline">Chọn câu đã được sắp xếp đúng trật tự và đúng ngữ pháp.</p>';
+  }else{
+    L+=passageHTML();
+    L+='<p class="hintline">Chọn câu điền vào chỗ trống đang được tô đậm.</p>';
+  }
+  $('left').innerHTML=L;
+
+  /* ----- cột phải ----- */
+  $('opts').innerHTML=it.shown.map((o,n)=>
+    '<button class="opt" data-n="'+n+'"><span class="k">'+'ABC'[n]+'</span><span class="v">'+esc(o)+'</span></button>'
+  ).join('');
+  $('fb').innerHTML=''; $('next').hidden=true;
+  $('next').textContent = (i===items.length-1) ? 'Xem kết quả' : 'Câu tiếp theo';
+}
+
+function passageHTML(){
+  let h='';
+  PASSAGES.forEach(p=>{
+    h+='<p class="qnum" style="margin-top:14px">'+esc(p.title)+'</p><p class="psg">';
+    p.parts.forEach(seg=>{
+      if(typeof seg==='number'){
+        const gi=seg-1, done=log.find(l=>l.ix===gi);
+        if(done) h+='<span class="gapmark done'+(done.ok?'':' wrong')+'">'+esc(items[gi].right)+'</span>';
+        else if(gi===i) h+='<span class="gapmark now">('+seg+')</span>';
+        else h+='<span class="gapmark">('+seg+')</span>';
+      } else h+=esc(seg);
+    });
+    h+='</p>';
+  });
+  return h;
+}
+
+$('opts').addEventListener('click',e=>{
+  const b=e.target.closest('.opt'); if(!b||locked) return;
+  locked=true;
+  const n=+b.dataset.n, it=items[i], ok=(n===it.ai);
+  if(ok) score++;
+  log.push({ix:it.ix, ok, mine:it.shown[n], right:it.right, why:it.why,
+            q:(TASKS[T].kind==='passage') ? ('Chỗ trống ('+(it.ix+1)+')') : it.q});
+  [...$('opts').children].forEach((el,ix)=>{
+    el.disabled=true;
+    if(ix===it.ai) el.classList.add('good');
+    else if(ix===n) el.classList.add('bad');
+  });
+  $('fb').innerHTML='<div class="fb '+(ok?'y':'n')+'"><span class="h">'
+    +(ok?'Chính xác!':'Chưa đúng.')+'</span>'
+    +(ok?'':'Đáp án đúng: <b>'+esc(it.right)+'</b><br>')+it.why+'</div>';
+  $('qs').textContent='Đúng: '+score;
+  if(TASKS[T].kind==='passage') $('left').innerHTML=
+    '<p class="tag">'+TASKS[T].tag+'</p><p class="qnum">Câu '+(i+1)+'</p>'+passageHTML();
+  $('next').hidden=false;
+  $('next').focus();
+});
+
+$('next').addEventListener('click',()=>{
+  i++;
+  if(i<items.length){ render(); } else { finish(); }
+});
+
+function finish(){
+  $('quiz').hidden=true; $('done').hidden=false;
+  $('dnm').textContent = name ? name : 'VUIVUI English Class';
+  $('dt').textContent = TASKS[T].name;
+  $('dsc').textContent = score+' / '+items.length;
+  const pc=score/items.length;
+  $('dmsg').textContent = pc===1 ? 'Tuyệt vời — em làm đúng tất cả!'
+    : pc>=.8 ? 'Rất tốt. Xem lại vài câu bên dưới là chắc kiến thức.'
+    : pc>=.5 ? 'Khá ổn. Hãy đọc kỹ phần giải thích bên dưới rồi làm lại.'
+    : 'Em nên xem lại Vocabulary Bank rồi làm lại bài này nhé.';
+  const wrong=log.filter(l=>!l.ok);
+  $('drev').innerHTML = wrong.length
+    ? '<p class="qnum">Những câu cần xem lại</p>'+wrong.map(w=>
+        '<div class="rv"><div class="n">'+esc(w.q)+'</div>'
+        +'<div class="mine">Em chọn: '+esc(w.mine)+'</div>'
+        +'<div class="right">Đáp án: '+esc(w.right)+'</div>'
+        +'<div style="margin-top:6px;color:var(--dim)">'+w.why+'</div></div>').join('')
+    : '';
+  window.scrollTo(0,0);
+}
+
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>start(+b.dataset.go)));
+$('quit').addEventListener('click',()=>{ $('quiz').hidden=true; $('menu').hidden=false; window.scrollTo(0,0); });
+$('again').addEventListener('click',()=>start(T));
+$('home').addEventListener('click',()=>{ $('done').hidden=true; $('menu').hidden=false; window.scrollTo(0,0); });
+</script>
+</body>
+</html>
